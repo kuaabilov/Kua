@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10121a">
+  <meta name="description" content="Калькулятор допустимого количества пропусков занятий за триместр AITU.">
+  <title>Сколько можно пропустить? — AITU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="На главную"><span class="brand-mark">A</span><span>ATTENDANCE<br><b>CALCULATOR</b></span></a>
+      <div class="term-pill"><span class="live-dot"></span> AITU <span class="pill-divider">/</span> 3 триместра в год</div>
+    </header>
+
+    <main id="top">
+      <section class="intro">
+        <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЙ ТРИМЕСТР ПОД КОНТРОЛЕМ</div>
+        <h1>Сколько пар<br>можно <em>пропустить?</em></h1>
+        <p class="intro-copy">Узнай свой лимит по каждому предмету. Введи расписание и настрой порог посещаемости под правила своего курса.</p>
+      </section>
+
+      <section class="calculator" aria-labelledby="calc-title">
+        <div class="card-heading">
+          <div><span class="step-label">КАЛЬКУЛЯТОР <span>01 / 01</span></span><h2 id="calc-title">Параметры предмета</h2></div>
+          <div class="orb" aria-hidden="true"><span>↗</span></div>
+        </div>
+
+        <div class="fields">
+          <label class="field field-wide" for="subject"><span class="field-title">НАЗВАНИЕ ПРЕДМЕТА <small>НЕОБЯЗАТЕЛЬНО</small></span><input id="subject" type="text" maxlength="60" placeholder="Например, программирование"></label>
+          <label class="field" for="weekly"><span class="field-title">ПАР В НЕДЕЛЮ</span><span class="number-wrap"><input id="weekly" type="number" min="1" max="40" value="3" inputmode="numeric"><span>пар</span></span></label>
+          <label class="field" for="weeks"><span class="field-title">НЕДЕЛЬ В ТРИМЕСТРЕ</span><span class="number-wrap"><input id="weeks" type="number" min="1" max="30" value="10" inputmode="numeric"><span>нед.</span></span></label>
+          <label class="field" for="missed"><span class="field-title">УЖЕ ПРОПУЩЕНО</span><span class="number-wrap"><input id="missed" type="number" min="0" max="999" value="0" inputmode="numeric"><span>пар</span></span></label>
+        </div>
+
+        <div class="threshold-row"><div><span class="field-title">МИНИМАЛЬНАЯ ПОСЕЩАЕМОСТЬ</span><p>Порог, который нужно сохранить для допуска</p></div><label class="threshold-control"><input id="threshold" type="number" min="1" max="100" value="70" inputmode="numeric" aria-label="Минимальная посещаемость в процентах"><span>%</span></label></div>
+
+        <div class="result" aria-live="polite">
+          <div class="result-top"><span class="result-kicker">ТВОЙ ЛИМИТ ПРОПУСКОВ</span><span class="status"><span class="status-dot"></span><span id="status-text">Всё под контролем</span></span></div>
+          <div class="result-main"><div class="result-number"><span id="remaining">9</span><span class="result-total"> / <span id="allowed-total">9</span></span></div><p id="result-caption">пар ещё можно пропустить</p></div>
+          <div class="progress-track" role="progressbar" aria-label="Использовано допустимых пропусков" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div><span class="progress-marker"></span></div>
+          <div class="result-foot"><span><b id="sessions-total">30</b> занятий за триместр</span><span>Посещаемость <b id="attendance">100%</b></span></div>
+        </div>
+
+        <p class="course-note"><span class="note-icon">i</span><span id="course-label">Расчёт для одного предмета</span><span class="note-separator">·</span>Округляем лимит вниз, в твою пользу.</p>
+      </section>
+
+      <section class="how-it-works">
+        <div class="section-tag">ПРОСТОЙ РАСЧЁТ</div>
+        <div class="formula"><span>Всего занятий</span><b>×</b><span id="absence-percent">30% допустимых пропусков</span><b>=</b><strong>твой лимит</strong></div>
+        <p>Например, 3 пары в неделю на протяжении 10 недель — это 30 занятий. При пороге 70% калькулятор разрешает до 9 пропусков. AITU указывает продолжительность триместра в 10 недель; требования к посещаемости могут отличаться по дисциплинам и правилам итогового контроля.</p>
+      </section>
+
+      <footer><span>Сделано студентом, для студентов <span class="heart">✳</span><br><a href="https://astanait.edu.kz/ru/study-at-aitu" target="_blank" rel="noreferrer">Официальная информация об учебном процессе AITU ↗</a></span><span class="footer-right">НЕОФИЦИАЛЬНЫЙ КАЛЬКУЛЯТОР AITU · УТОЧНЯЙ ПРАВИЛА СВОЕГО КУРСА</span></footer>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
