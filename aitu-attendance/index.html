@@ -1,64 +1,13 @@
 <!doctype html>
-<html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10121a">
-  <meta name="description" content="Калькулятор допустимого количества пропусков занятий за триместр AITU.">
-  <title>Сколько можно пропустить? — AITU</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="page-shell">
-    <header class="topbar">
-      <a class="brand" href="#top" aria-label="На главную"><span class="brand-mark">A</span><span>ATTENDANCE<br><b>CALCULATOR</b></span></a>
-      <div class="term-pill"><span class="live-dot"></span> AITU <span class="pill-divider">/</span> 3 триместра в год</div>
-    </header>
-
-    <main id="top">
-      <section class="intro">
-        <div class="eyebrow"><span class="eyebrow-line"></span> ТВОЙ ТРИМЕСТР ПОД КОНТРОЛЕМ</div>
-        <h1>Сколько пар<br>можно <em>пропустить?</em></h1>
-        <p class="intro-copy">Узнай свой лимит по каждому предмету. Введи расписание и настрой порог посещаемости под правила своего курса.</p>
-      </section>
-
-      <section class="calculator" aria-labelledby="calc-title">
-        <div class="card-heading">
-          <div><span class="step-label">КАЛЬКУЛЯТОР <span>01 / 01</span></span><h2 id="calc-title">Параметры предмета</h2></div>
-          <div class="orb" aria-hidden="true"><span>↗</span></div>
-        </div>
-
-        <div class="fields">
-          <label class="field field-wide" for="subject"><span class="field-title">НАЗВАНИЕ ПРЕДМЕТА <small>НЕОБЯЗАТЕЛЬНО</small></span><input id="subject" type="text" maxlength="60" placeholder="Например, программирование"></label>
-          <label class="field" for="weekly"><span class="field-title">ПАР В НЕДЕЛЮ</span><span class="number-wrap"><input id="weekly" type="number" min="1" max="40" value="3" inputmode="numeric"><span>пар</span></span></label>
-          <label class="field" for="weeks"><span class="field-title">НЕДЕЛЬ В ТРИМЕСТРЕ</span><span class="number-wrap"><input id="weeks" type="number" min="1" max="30" value="10" inputmode="numeric"><span>нед.</span></span></label>
-          <label class="field" for="missed"><span class="field-title">УЖЕ ПРОПУЩЕНО</span><span class="number-wrap"><input id="missed" type="number" min="0" max="999" value="0" inputmode="numeric"><span>пар</span></span></label>
-        </div>
-
-        <div class="threshold-row"><div><span class="field-title">МИНИМАЛЬНАЯ ПОСЕЩАЕМОСТЬ</span><p>Порог, который нужно сохранить для допуска</p></div><label class="threshold-control"><input id="threshold" type="number" min="1" max="100" value="70" inputmode="numeric" aria-label="Минимальная посещаемость в процентах"><span>%</span></label></div>
-
-        <div class="result" aria-live="polite">
-          <div class="result-top"><span class="result-kicker">ТВОЙ ЛИМИТ ПРОПУСКОВ</span><span class="status"><span class="status-dot"></span><span id="status-text">Всё под контролем</span></span></div>
-          <div class="result-main"><div class="result-number"><span id="remaining">9</span><span class="result-total"> / <span id="allowed-total">9</span></span></div><p id="result-caption">пар ещё можно пропустить</p></div>
-          <div class="progress-track" role="progressbar" aria-label="Использовано допустимых пропусков" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0"><div class="progress-fill" id="progress-fill"></div><span class="progress-marker"></span></div>
-          <div class="result-foot"><span><b id="sessions-total">30</b> занятий за триместр</span><span>Посещаемость <b id="attendance">100%</b></span></div>
-        </div>
-
-        <p class="course-note"><span class="note-icon">i</span><span id="course-label">Расчёт для одного предмета</span><span class="note-separator">·</span>Округляем лимит вниз, в твою пользу.</p>
-      </section>
-
-      <section class="how-it-works">
-        <div class="section-tag">ПРОСТОЙ РАСЧЁТ</div>
-        <div class="formula"><span>Всего занятий</span><b>×</b><span id="absence-percent">30% допустимых пропусков</span><b>=</b><strong>твой лимит</strong></div>
-        <p>Например, 3 пары в неделю на протяжении 10 недель — это 30 занятий. При пороге 70% калькулятор разрешает до 9 пропусков. AITU указывает продолжительность триместра в 10 недель; требования к посещаемости могут отличаться по дисциплинам и правилам итогового контроля.</p>
-      </section>
-
-      <footer><span>Сделано студентом, для студентов <span class="heart">✳</span><br><a href="https://astanait.edu.kz/ru/study-at-aitu" target="_blank" rel="noreferrer">Официальная информация об учебном процессе AITU ↗</a></span><span class="footer-right">НЕОФИЦИАЛЬНЫЙ КАЛЬКУЛЯТОР AITU · УТОЧНЯЙ ПРАВИЛА СВОЕГО КУРСА</span></footer>
-    </main>
-  </div>
-  <script src="app.js"></script>
-</body>
-</html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10121a"><title>Калькулятор посещаемости — AITU</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page-shell"><header class="topbar"><a class="brand" href="#top"><span class="brand-mark">A</span><span>AITU<br>ATTENDANCE</span></a><nav class="languages" aria-label="Language / Язык / Тіл"><button type="button" data-lang="ru" lang="ru">RU</button><button type="button" data-lang="kk" lang="kk">ҚАЗ</button><button type="button" data-lang="en" lang="en">EN</button></nav></header>
+<main id="top"><section class="intro"><div class="eyebrow" data-i18n="eyebrow"></div><h1><span data-i18n="heading"></span><br><em data-i18n="accent"></em></h1><p class="intro-copy" data-i18n="intro"></p></section>
+<div class="mode-tabs" role="tablist"><button type="button" id="limit-tab" role="tab" aria-controls="limit-panel" data-i18n="limitTab"></button><button type="button" id="reverse-tab" role="tab" aria-controls="reverse-panel" data-i18n="reverseTab"></button></div>
+<section class="calculator" id="limit-panel" role="tabpanel" aria-labelledby="limit-tab"><div class="card-heading"><h2 data-i18n="parameters"></h2><div class="orb" aria-hidden="true">↗</div></div><div class="fields">
+<label class="field field-wide" for="subject"><span class="field-title" data-i18n="subject"></span><input id="subject" type="text" maxlength="60"></label>
+<label class="field" for="weekly"><span class="field-title" data-i18n="weekly"></span><input id="weekly" type="number" value="3" min="1" max="40" step="1" required inputmode="numeric"></label><label class="field" for="weeks"><span class="field-title" data-i18n="weeks"></span><input id="weeks" type="number" value="10" min="1" max="30" step="1" required inputmode="numeric"></label><label class="field" for="missed"><span class="field-title" data-i18n="missed"></span><input id="missed" type="number" value="0" min="0" max="1200" step="1" required inputmode="numeric"></label>
+</div><div class="threshold-row"><div><label class="field-title" for="threshold" data-i18n="threshold"></label><p data-i18n="thresholdHelp"></p></div><input class="threshold-input" id="threshold" type="number" min="0" max="100" step="0.1" value="70" required></div>
+<p class="error" id="limit-error" role="alert" hidden data-i18n="invalid"></p>
+<div class="result" id="limit-result" aria-live="polite"><div class="result-top"><span class="result-kicker" id="result-caption"></span><span class="status" id="status-text"></span></div><div class="result-main"><div class="result-number" id="remaining"></div></div><div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100"><div class="progress-fill" id="progress-fill"></div></div><div class="result-foot"><span><span data-i18n="total"></span>: <b id="sessions-total"></b></span><span><span data-i18n="allowed"></span>: <b id="allowed-total"></b></span></div><p class="projection"><span data-i18n="projected"></span>: <b id="attendance"></b></p></div></section>
+<section class="calculator" id="reverse-panel" role="tabpanel" aria-labelledby="reverse-tab" hidden><div class="card-heading"><h2 data-i18n="reverseTitle"></h2><div class="orb" aria-hidden="true">%</div></div><p class="helper" data-i18n="reverseHelp"></p><div class="fields reverse-fields"><label class="field" for="held"><span class="field-title" data-i18n="held"></span><input id="held" type="number" value="30" min="1" max="10000" step="1" required inputmode="numeric"></label><label class="field" for="rate"><span class="field-title" data-i18n="rate"></span><input id="rate" type="number" value="80" min="0" max="100" step="any" required inputmode="decimal"></label></div><p class="error" id="reverse-error" role="alert" hidden data-i18n="invalid"></p><div class="result" id="reverse-result" aria-live="polite"><span class="result-kicker" data-i18n="estimate"></span><div class="result-main"><div class="result-number" id="estimated-missed"></div></div><div class="result-foot"><span><span data-i18n="attended"></span>: <b id="estimated-attended"></b></span><span><span data-i18n="raw"></span>: <b id="raw-missed"></b></span></div></div><p class="helper" data-i18n="rounding"></p></section>
+<section class="how-it-works"><div class="section-tag" data-i18n="how"></div><p data-i18n="formula"></p><p data-i18n="notice"></p></section><footer><span>AITU · ATTENDANCE</span><a id="source-link" href="https://astanait.edu.kz/ru/study-at-aitu" target="_blank" rel="noreferrer" data-i18n="source"></a></footer></main></div><script src="app.js"></script></body></html>
