@@ -38,7 +38,15 @@
     const forecast=maxRemaining<0?"unreachable":minRemaining<0?"uncertain":max===0?"exhausted":"available";
     return {...result,total,future,min,max,forecast};
   }
-  const api={calculate,numeric};
+  function quickLimit(weekly, weeks, missed, threshold) {
+    const values=[weekly,weeks,missed,threshold].map(numeric);
+    const [w,n,m,t]=values;
+    if(values.some(v=>v===null)||!Number.isInteger(w)||!Number.isInteger(n)||!Number.isInteger(m)||w<1||w>100||n<1||n>100||m<0||m>w*n||t<0||t>100)return {state:"invalid"};
+    const total=w*n,allowed=Math.floor(total*(100-t)/100+1e-9);
+    return {state:"valid",total,allowed,remaining:allowed-m};
+  }
+  const api={calculate,numeric,quickLimit};
   if(typeof module!=="undefined"&&module.exports)module.exports=api;
   else root.AttendanceMath=api;
 })(typeof globalThis!=="undefined"?globalThis:this);
+
