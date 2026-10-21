@@ -1,0 +1,30 @@
+const fields = ["subject", "weekly", "weeks", "missed", "threshold"].map(id => document.getElementById(id));
+const [subjectEl, weeklyEl, weeksEl, missedEl, thresholdEl] = fields;
+const el = id => document.getElementById(id);
+const fmt = n => new Intl.NumberFormat("ru-RU").format(n);
+function calculate() {
+  const weekly = Math.max(0, Number(weeklyEl.value) || 0);
+  const weeks = Math.max(0, Number(weeksEl.value) || 0);
+  const missed = Math.max(0, Number(missedEl.value) || 0);
+  const threshold = Math.min(100, Math.max(1, Number(thresholdEl.value) || 70));
+  const total = weekly * weeks;
+  const allowed = Math.floor(total * (100 - threshold) / 100);
+  const remaining = allowed - missed;
+  const attendance = total === 0 ? 0 : Math.max(0, Math.round((total - missed) / total * 100));
+  const used = allowed === 0 ? (missed > 0 ? 100 : 0) : Math.min(100, Math.max(0, missed / allowed * 100));
+  el("remaining").textContent = fmt(Math.max(0, remaining));
+  el("allowed-total").textContent = fmt(allowed);
+  el("sessions-total").textContent = fmt(total);
+  el("attendance").textContent = `${attendance}%`;
+  el("absence-percent").textContent = `${100 - threshold}% допустимых пропусков`;
+  el("result-caption").textContent = remaining < 0 ? `пропуск${missed === 1 ? "" : "ов"} сверх лимита` : `пар${remaining === 1 ? "а" : "ы"} ещё можно пропустить`;
+  el("status-text").textContent = total === 0 ? "Укажи параметры" : remaining < 0 ? "Лимит превышен" : remaining === 0 ? "Лимит использован" : "Всё под контролем";
+  el("progress-fill").style.width = `${used}%`;
+  const track = document.querySelector(".progress-track");
+  track.setAttribute("aria-valuemax", String(Math.max(1, allowed)));
+  track.setAttribute("aria-valuenow", String(Math.min(missed, allowed)));
+  document.body.classList.toggle("over-limit", remaining < 0);
+  el("course-label").textContent = subjectEl.value.trim() ? `Предмет: ${subjectEl.value.trim()}` : "Расчёт для одного предмета";
+}
+fields.forEach(input => input.addEventListener("input", calculate));
+calculate();
