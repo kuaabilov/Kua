@@ -2,7 +2,9 @@
 (function (root) {
   function numeric(value) {
     if (String(value ?? "").trim() === "") return null;
-    const n = Number(String(value).replace(",", "."));
+    const text = String(value).trim().replace(",", ".");
+    if (!/^[+-]?(?:[0-9]+(?:[.][0-9]*)?|[.][0-9]+)$/.test(text)) return null;
+    const n = Number(text);
     return Number.isFinite(n) ? n : null;
   }
   function calculate(row, mode, threshold) {
@@ -13,14 +15,14 @@
     let rate, low, high;
     if (mode === "points") {
       const e = numeric(row.earned), m = numeric(row.maximum);
-      if (e === null || m === null) return {state:"empty"};
-      if (m <= 0 || e < 0 || e > m) return {state:"invalid"};
+      if (String(row.earned ?? "").trim() === "" || String(row.maximum ?? "").trim() === "") return {state:"empty"};
+      if (e === null || m === null || m <= 0 || e < 0 || e > m) return {state:"invalid"};
       rate = 100 * e / m;
       low = high = h * (m-e) / m;
     } else {
       const p = numeric(row.percent);
-      if (p === null) return {state:"empty"};
-      if (p < 0 || p > 100) return {state:"invalid"};
+      if (String(row.percent ?? "").trim() === "") return {state:"empty"};
+      if (p === null || p < 0 || p > 100) return {state:"invalid"};
       const decimals = (String(row.percent).replace(",", ".").split(".")[1] || "").length;
       const half = 0.5 * Math.pow(10, -Math.min(decimals, 10));
       rate = p;
